@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
     <link
@@ -8,10 +9,94 @@
       href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
     />
 
-    <title>Stitch Design</title>
+    <title>CampusConnect - Lost & Found</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      /* Custom styles for enhancements */
+      .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background: white;
+        border: 1px solid #e8f2ec;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 1000;
+        min-width: 200px;
+      }
+      
+      .dropdown.show {
+        display: block;
+      }
+      
+      .dropdown-item {
+        padding: 12px 16px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      
+      .dropdown-item:hover {
+        background-color: #f8fbfa;
+      }
+      
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+      
+      .progress-bar {
+        height: 8px;
+        background-color: #e8f2ec;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #38e07b 0%, #51946c 100%);
+        border-radius: 4px;
+        transition: width 0.5s ease-in-out;
+      }
+      
+      .item-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .tag-lost {
+        background-color: #fee2e2;
+        color: #dc2626;
+      }
+      
+      .tag-found {
+        background-color: #d1fae5;
+        color: #065f46;
+      }
+      
+      .contact-btn {
+        background: linear-gradient(135deg, #38e07b 0%, #51946c 100%);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      
+      .contact-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(56, 224, 123, 0.3);
+      }
+      
+      .item-icon {
+        font-size: 24px;
+        margin-right: 12px;
+      }
+    </style>
   </head>
   <body>
     <div class="relative flex size-full min-h-screen flex-col bg-[#f8fbfa] group/design-root overflow-x-hidden" style='font-family: Manrope, "Noto Sans", sans-serif;'>
@@ -48,60 +133,191 @@
                 </div>
               </button>
             </div>
-            <div
-              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0DyhgcJTXENF9zTVde1Bo1RO4eRuICR_EhQQjF4Hb0GsXUSxQtJBSDvpacMWNe0ecQhqD3cahs0BP-j4MZTQp9ab52P-U1ZWhGYFzUq_FjMNIUwE4GI5_7rerz2-IKvNYJV1her_B4Y74X9GokZFeUunzlVq3XuFA1iCFbV_PbVGOQ07vjaE6WY29P4POm4pNOBV_52RDA84iMQOMh0AHRf9-p3tdcWYYOQ8Nl4R0KBpj7SwP80OX6cYL-PRyfNzZse_XZZdJM4g");'
-            ></div>
+            <!-- Enhanced Profile Avatar with Dropdown -->
+            <div class="relative">
+              <div
+                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 cursor-pointer hover:ring-2 hover:ring-[#38e07b] transition-all"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0DyhgcJTXENF9zTVde1Bo1RO4eRuICR_EhQQjF4Hb0GsXUSxQtJBSDvpacMWNe0ecQhqD3cahs0BP-j4MZTQp9ab52P-U1ZWhGYFzUq_FjMNIUwE4GI5_7rerz2-IKvNYJV1her_B4Y74X9GokZFeUunzlVq3XuFA1iCFbV_PbVGOQ07vjaE6WY29P4POm4pNOBV_52RDA84iMQOMh0AHRf9-p3tdcWYYOQ8Nl4R0KBpj7SwP80OX6cYL-PRyfNzZse_XZZdJM4g");'
+                onclick="toggleDropdown()"
+              ></div>
+              <div id="profileDropdown" class="dropdown">
+                <div class="dropdown-item">
+                  <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48ZM32,64H224V88H32ZM32,104H224v88H32Z"/>
+                    </svg>
+                    <span class="text-sm font-medium">My Reports</span>
+                  </div>
+                </div>
+                <div class="dropdown-item">
+                  <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40Z"/>
+                    </svg>
+                    <span class="text-sm font-medium">Settings</span>
+                  </div>
+                </div>
+                <div class="dropdown-item text-red-600">
+                  <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M112,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h56a8,8,0,0,1,0,16H56V208h48A8,8,0,0,1,112,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L196.69,120H104a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,221.66,122.34Z"/>
+                    </svg>
+                    <span class="text-sm font-medium">Logout</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </header>
         <div class="px-40 flex flex-1 justify-center py-5">
           <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
             <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#0e1a13] tracking-light text-[32px] font-bold leading-tight min-w-72">Hi, Ethan</p></div>
             <div class="flex flex-wrap gap-4 p-4">
-              <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-lg p-6 border border-[#d1e6d9]">
-                <p class="text-[#0e1a13] text-base font-medium leading-normal">Lost &amp; Found Index</p>
-                <p class="text-[#0e1a13] tracking-light text-2xl font-bold leading-tight">-</p>
-                <p class="text-[#e72a08] text-base font-medium leading-normal">-10%</p>
+              <!-- Enhanced Lost & Found Index with Progress Bar -->
+              <div class="flex min-w-[158px] flex-1 flex-col gap-3 rounded-lg p-6 border border-[#d1e6d9] bg-white">
+                <p class="text-[#0e1a13] text-base font-medium leading-normal">Lost & Found Index</p>
+                <div class="flex items-center gap-3">
+                  <p class="text-[#0e1a13] tracking-light text-2xl font-bold leading-tight">73%</p>
+                  <div class="flex-1">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 73%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-[#51946c] text-sm font-medium leading-normal">↗ +12% this month</p>
               </div>
             </div>
             <h2 class="text-[#0e1a13] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Latest Reports</h2>
+            
+            <!-- Enhanced Item Report 1 - Wallet (Lost) -->
             <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-lg bg-[#f8fbfa] p-4 shadow-[0_0_4px_rgba(0,0,0,0.1)]">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-[#51946c] text-sm font-normal leading-normal">Lost</p>
-                  <p class="text-[#0e1a13] text-base font-bold leading-tight">Wallet</p>
-                  <p class="text-[#51946c] text-sm font-normal leading-normal">Last seen at Student Union, contact: 555-1234</p>
+              <div class="flex items-stretch justify-between gap-4 rounded-lg bg-white p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-[#e8f2ec] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-shadow">
+                <div class="flex flex-col gap-3 flex-[2_2_0px]">
+                  <div class="flex items-center gap-3">
+                    <span class="item-icon">👛</span>
+                    <span class="item-tag tag-lost">🔴 Lost</span>
+                    <span class="text-[#51946c] text-sm font-normal">Reported 2 hours ago</span>
+                  </div>
+                  <p class="text-[#0e1a13] text-lg font-bold leading-tight">Brown Leather Wallet</p>
+                  <p class="text-[#51946c] text-sm font-normal leading-normal">Last seen at Student Union, contains student ID and credit cards</p>
+                  <div class="flex gap-2 mt-2">
+                    <button class="contact-btn text-white px-4 py-2 rounded-lg text-sm font-medium">
+                      Contact Owner
+                    </button>
+                    <button class="border border-[#d1e6d9] text-[#51946c] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#f8fbfa] transition-colors">
+                      View Details
+                    </button>
+                  </div>
                 </div>
                 <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1 max-w-[200px]"
                   style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7S_NvY7HyK9fwanEJ2qcm6p5zQN62qoy6l_mU6sRkoinO6B7d3RTRirVIWBKwBqJLev_yW8N5NEPD2HqA4OLoWckEA2OKz9ZRLEfaPlKjs1x7xRfWMLwGqp_uKSI1fFu1M4-nqhs3Wj4MNb6-PiDAAnvQYl4WoEdUBeY3pBD9tUNc7-9WU5ZABFMvFEAYMIxvspXp4OkfMVGoBvKyeNFxKSrhRchm3PYjL4BrvtMo0FrQWN25E5WZ2fEh6arYisZOLxovMoJuEuE");'
                 ></div>
               </div>
             </div>
+            
+            <!-- Enhanced Item Report 2 - Laptop (Found) -->
             <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-lg bg-[#f8fbfa] p-4 shadow-[0_0_4px_rgba(0,0,0,0.1)]">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-[#51946c] text-sm font-normal leading-normal">Found</p>
-                  <p class="text-[#0e1a13] text-base font-bold leading-tight">Laptop</p>
-                  <p class="text-[#51946c] text-sm font-normal leading-normal">Found in Library, contact: 555-5678</p>
+              <div class="flex items-stretch justify-between gap-4 rounded-lg bg-white p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-[#e8f2ec] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-shadow">
+                <div class="flex flex-col gap-3 flex-[2_2_0px]">
+                  <div class="flex items-center gap-3">
+                    <span class="item-icon">💻</span>
+                    <span class="item-tag tag-found">🟢 Found</span>
+                    <span class="text-[#51946c] text-sm font-normal">Reported 5 hours ago</span>
+                  </div>
+                  <p class="text-[#0e1a13] text-lg font-bold leading-tight">MacBook Pro 13"</p>
+                  <p class="text-[#51946c] text-sm font-normal leading-normal">Found in Library study room, silver color with university stickers</p>
+                  <div class="flex gap-2 mt-2">
+                    <button class="contact-btn text-white px-4 py-2 rounded-lg text-sm font-medium">
+                      Contact Finder
+                    </button>
+                    <button class="border border-[#d1e6d9] text-[#51946c] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#f8fbfa] transition-colors">
+                      View Details
+                    </button>
+                  </div>
                 </div>
                 <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1 max-w-[200px]"
                   style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAwGpJMyWUleXg9IaF9Vu89lId0GWx6q0qjQVrfykTxrT3ynPC-SrElwjiaX8GTmy1iF2z0Tz3PWlme2YcpBbMYeQWh0XhsI5ho2FezjqF21vSHbTClQX2W-QHKR418FKFyR-Nbp_qjNgoCkruNOEwSkSHVBb6FSGBIkZ-m5niL7YROAqq3haf_rDcMH7z6Gav6TaoyJQUmM6wuECKS1jrFGklHKITXlbUHGz20Cty3oB_i5_LYBDXZQAjbgPo2CQXq3IStbbcvZuM");'
                 ></div>
               </div>
             </div>
+            
+            <!-- Enhanced Item Report 3 - Keys (Lost) -->
             <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-lg bg-[#f8fbfa] p-4 shadow-[0_0_4px_rgba(0,0,0,0.1)]">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-[#51946c] text-sm font-normal leading-normal">Lost</p>
-                  <p class="text-[#0e1a13] text-base font-bold leading-tight">Keys</p>
-                  <p class="text-[#51946c] text-sm font-normal leading-normal">Last seen at Gym, contact: 555-9012</p>
+              <div class="flex items-stretch justify-between gap-4 rounded-lg bg-white p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-[#e8f2ec] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-shadow">
+                <div class="flex flex-col gap-3 flex-[2_2_0px]">
+                  <div class="flex items-center gap-3">
+                    <span class="item-icon">🔑</span>
+                    <span class="item-tag tag-lost">🔴 Lost</span>
+                    <span class="text-[#51946c] text-sm font-normal">Reported 1 day ago</span>
+                  </div>
+                  <p class="text-[#0e1a13] text-lg font-bold leading-tight">Dorm Room Keys</p>
+                  <p class="text-[#51946c] text-sm font-normal leading-normal">Last seen at Gym, blue keychain with "Go Bears!" tag</p>
+                  <div class="flex gap-2 mt-2">
+                    <button class="contact-btn text-white px-4 py-2 rounded-lg text-sm font-medium">
+                      Contact Owner
+                    </button>
+                    <button class="border border-[#d1e6d9] text-[#51946c] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#f8fbfa] transition-colors">
+                      View Details
+                    </button>
+                  </div>
                 </div>
                 <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1 max-w-[200px]"
                   style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFABb7-WCMHOd5rFn1Qy5n3ajvKdrlzSpBsYih8WwZU-Ln_JXwldDVX4LHE-nn_V41B_TdqVRmulmbkRE90P3wZrkMYP48CEIJ_xHD-nFVhfOO4D-6sh0ipAPeS4ilXKwGFYxY_vIX4u_Dw-8v2UK-UsUQ0JlTIeCrJHIzfJuKwNurttt57614CMImC-uKOriRBfDOqzl2UdlO28ouutIBP84CVgc7Fx9kJP-V0qMaiNm9IKAZgwcO6IOiL4xDwFnny0hTc1fCZCg");'
                 ></div>
+              </div>
+            </div>
+
+            <!-- Additional Enhanced Reports -->
+            <div class="p-4">
+              <div class="flex items-stretch justify-between gap-4 rounded-lg bg-white p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-[#e8f2ec] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-shadow">
+                <div class="flex flex-col gap-3 flex-[2_2_0px]">
+                  <div class="flex items-center gap-3">
+                    <span class="item-icon">🪪</span>
+                    <span class="item-tag tag-found">🟢 Found</span>
+                    <span class="text-[#51946c] text-sm font-normal">Reported 3 hours ago</span>
+                  </div>
+                  <p class="text-[#0e1a13] text-lg font-bold leading-tight">Student ID Card</p>
+                  <p class="text-[#51946c] text-sm font-normal leading-normal">Found near cafeteria entrance, belongs to Sarah Johnson</p>
+                  <div class="flex gap-2 mt-2">
+                    <button class="contact-btn text-white px-4 py-2 rounded-lg text-sm font-medium">
+                      Contact Finder
+                    </button>
+                    <button class="border border-[#d1e6d9] text-[#51946c] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#f8fbfa] transition-colors">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1 max-w-[200px] bg-gradient-to-br from-[#e8f2ec] to-[#d1e6d9] flex items-center justify-center">
+                  <span class="text-4xl">🪪</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4">
+              <div class="flex items-stretch justify-between gap-4 rounded-lg bg-white p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-[#e8f2ec] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-shadow">
+                <div class="flex flex-col gap-3 flex-[2_2_0px]">
+                  <div class="flex items-center gap-3">
+                    <span class="item-icon">💧</span>
+                    <span class="item-tag tag-lost">🔴 Lost</span>
+                    <span class="text-[#51946c] text-sm font-normal">Reported 6 hours ago</span>
+                  </div>
+                  <p class="text-[#0e1a13] text-lg font-bold leading-tight">Blue Water Bottle</p>
+                  <p class="text-[#51946c] text-sm font-normal leading-normal">Last seen at basketball court, has "Hydro Flask" logo</p>
+                  <div class="flex gap-2 mt-2">
+                    <button class="contact-btn text-white px-4 py-2 rounded-lg text-sm font-medium">
+                      Contact Owner
+                    </button>
+                    <button class="border border-[#d1e6d9] text-[#51946c] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#f8fbfa] transition-colors">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1 max-w-[200px] bg-gradient-to-br from-[#e8f2ec] to-[#d1e6d9] flex items-center justify-center">
+                  <span class="text-4xl">💧</span>
+                </div>
               </div>
             </div>
           </div>
@@ -154,5 +370,31 @@
         </footer>
       </div>
     </div>
+
+    <script>
+      function toggleDropdown() {
+        const dropdown = document.getElementById('profileDropdown');
+        dropdown.classList.toggle('show');
+      }
+
+      // Close dropdown when clicking outside
+      window.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('profileDropdown');
+        const avatar = event.target.closest('[onclick="toggleDropdown()"]');
+        
+        if (!avatar && !dropdown.contains(event.target)) {
+          dropdown.classList.remove('show');
+        }
+      });
+
+      // Animate progress bar on load
+      window.addEventListener('load', function() {
+        const progressFill = document.querySelector('.progress-fill');
+        progressFill.style.width = '0%';
+        setTimeout(() => {
+          progressFill.style.width = '73%';
+        }, 500);
+      });
+    </script>
   </body>
 </html>
