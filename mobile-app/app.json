@@ -1,0 +1,66 @@
+{
+  "expo": {
+    "name": "ElderCare Connect",
+    "slug": "eldercare-connect",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "org.eldercareconnect.mobile",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses location to provide emergency services and track movement patterns for health monitoring.",
+        "NSLocationAlwaysUsageDescription": "This app uses location to provide emergency services and track movement patterns for health monitoring.",
+        "NSMicrophoneUsageDescription": "This app uses microphone for voice commands and emergency communication.",
+        "NSHealthUpdateUsageDescription": "This app reads and writes health data to provide comprehensive health monitoring.",
+        "NSHealthShareUsageDescription": "This app shares health data with your care team with your consent."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "org.eldercareconnect.mobile",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "RECORD_AUDIO",
+        "VIBRATE",
+        "RECEIVE_BOOT_COMPLETED",
+        "WAKE_LOCK"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-location",
+      "expo-notifications",
+      [
+        "expo-background-fetch",
+        {
+          "ios": {
+            "backgroundModes": ["background-fetch"]
+          }
+        }
+      ]
+    ],
+    "scheme": "eldercare-connect",
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    }
+  }
+}
